@@ -5,7 +5,7 @@ SG_ID="sg-0c0a10aa0c127c8db" #security Group ID
 
 for instance in $@
 do
-    INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]' --query 'Instances[0] .InstanceID' --output text)
+    INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" --query 'Instances[0] .InstanceID' --output text)
 
     #Get Private IP
     if [ $instance != "frontend" ]; then
